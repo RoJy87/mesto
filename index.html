@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vendor/normalize.css" />
+    <link rel="stylesheet" href="./fonts/inter.css" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
+</head>
+
+<body class="page">
+
+    <!-- Блок header -->
+
+    <header class="header">
+        <img src="./image/logo.svg" alt="Логотип" class="header__logo">
+    </header>
+
+    <!-- Блок main // profile -->
+
+    <main class="main">
+
+        <section class="profile">
+            <img src="./image/avatar__image.jpg" alt="Аватар пользователя" class="profile__avatar">
+            <div class="profile__info">
+                <div class="profile__wrapper">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit-btn button"></button>
+                </div>
+                <p class="profile__description">Исследователь океана</p>
+            </div>
+            <button type="button" class="profile__add-btn button"></button>
+        </section>
+
+        <!-- Блок places -->
+
+        <section class="places">
+            <article class="place">
+                <img src="./image/place__karachaevsk.jpg" alt="Старинный храм г. Карачаевск" class="place__photo">
+                <div class="place__wrapper">
+                    <h2 class="place__name">Карачаевск</h2>
+                    <button type="button" class="place__like-btn button"></button>
+                </div>
+            </article>
+            <article class="place">
+                <img src="./image/place__polka.jpg" alt="Мезмай - Орлинная полка" class="place__photo">
+                <div class="place__wrapper">
+                    <h2 class="place__name">Мезмай</h2>
+                    <button type="button" class="place__like-btn button"></button>
+                </div>
+            </article>
+            <article class="place">
+                <img src="./image/place__elbrus.jpg" alt="Эльбрус button" class="place__photo">
+                <div class="place__wrapper">
+                    <h2 class="place__name">Эльбрус</h2>
+                    <button type="button" class="place__like-btn button"></button>
+                </div>
+            </article>
+            <article class="place">
+                <img src="./image/place__dombai.jpg" alt="Домбай" class="place__photo">
+                <div class="place__wrapper">
+                    <h2 class="place__name">Домбай</h2>
+                    <button type="button" class="place__like-btn button"></button>
+                </div>
+            </article>
+            <article class="place">
+                <img src="./image/place__multinskoe.jpg" alt="Мультинской озеро Алтай" class="place__photo">
+                <div class="place__wrapper">
+                    <h2 class="place__name">Алтай</h2>
+                    <button type="button" class="place__like-btn button"></button>
+                </div>
+            </article>
+            <article class="place">
+                <img src="./image/place__sayani.jpg" alt="Саяны горная цепь" class="place__photo">
+                <div class="place__wrapper">
+                    <h2 class="place__name">Саяны горная цепь</h2>
+                    <button type="button" class="place__like-btn button"></button>
+                </div>
+            </article>
+        </section>
+
+        <!-- Блок popup -->
+
+        <section class="popup">
+            <article class="popup__container">
+                <button class="popup__close-btn button" type="button"></button>
+                <h2 class="popup__header">Редактировать профиль</h2>
+                <form action="/#" class="popup__form-data" id="form-data" method="post">
+                    <input class="popup__form-field popup__form-name" tabindex="1" type="text" name="name" 
+                       value="Жак-Ив Кусто" placeholder="Введите имя">
+                    <input class="popup__form-field popup__form-status" tabindex="2" type="text" name="status" 
+                       value="Исследователь океана" placeholder="Введите статус">
+                </form>
+                <button type="submit" form="form-data" class="popup__save-btn button">Сохранить</button>
+            </article>
+        </section>
+    </main>
+
+    <!-- Блок footer -->
+
+    <footer class="footer">
+        <p class="footer__copyright">&#169; 2022. Данил Симонов</p>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+
+</html>
