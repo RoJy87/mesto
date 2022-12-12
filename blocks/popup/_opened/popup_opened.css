@@ -1,0 +1,6 @@
+.popup_opened {
+  display: block;
+
+/* после ревью */
+  /* transform: scale(1) rotate(0); */
+}

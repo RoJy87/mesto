@@ -1,0 +1,11 @@
+.place__like-btn {
+  box-sizing: border-box;
+  padding: 0;
+  max-width: 22px;
+  width: 100%;
+  min-height: 19px;
+  background: url('../../../image/place__like.svg') no-repeat center / 100%;
+  border: none;
+  opacity: 0.6;
+}
+

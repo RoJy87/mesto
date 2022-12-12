@@ -1,0 +1,9 @@
+.place__wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 86%;
+  min-height: 76px;
+  align-items: center;
+  margin-left: 21px;
+}
+

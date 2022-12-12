@@ -27,7 +27,7 @@ function formSubmitHandler(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     // Так мы можем определить свою логику отправки.
     // О том, как это делать, расскажем позже.
-    
+
     // Находим поля формы в DOM
     let nameInput = document.querySelector('.popup__form-name').value; // Воспользуйтесь инструментом .querySelector()
     let jobInput = document.querySelector('.popup__form-status').value; // Воспользуйтесь инструментом .querySelector()

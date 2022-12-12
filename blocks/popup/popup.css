@@ -1,0 +1,15 @@
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+
+  /* после ревью */
+
+  /* transform:scale(0) rotate(360deg);
+  transition: transform .4s linear .1s;   */
+}

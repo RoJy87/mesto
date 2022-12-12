@@ -1,0 +1,19 @@
+.profile__edit-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: 1px solid #FFFFFF;
+  background: url('../../../image/edit__button-icon.svg') no-repeat center / 50%;
+}
+
+@media (min-width: 768px) {
+  .profile__edit-btn {
+    position: static;
+    transform: translateY(0);
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,0 +1,14 @@
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 33px;
+  gap: 7px;
+}
+
+@media (min-width: 768px) {
+  .profile__info {
+    gap: 12px;
+    margin-bottom: 0;
+  }
+}
