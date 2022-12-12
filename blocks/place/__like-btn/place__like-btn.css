@@ -6,6 +6,9 @@
   min-height: 19px;
   background: url('../../../image/place__like.svg') no-repeat center / 100%;
   border: none;
-  opacity: 0.6;
+}
+
+.place__like-btn:hover {
+  opacity: 0.5;
 }
 
