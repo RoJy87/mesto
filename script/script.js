@@ -1,17 +1,20 @@
-const editButton = document.querySelector('.profile__edit-btn');
-const popup = document.querySelector('.popup');
+const page = document.querySelector('.page');
+const editButton = page.querySelector('.profile__edit-btn');
+const popup = page.querySelector('.popup');
 const closeButton = popup.querySelector('.popup__close-btn');
 
 
 function openPopup() {
     editButton.addEventListener('click', function () {
         popup.classList.add('popup_opened');
+        page.style.overflow = 'hidden';
     });
 }
 
 function closePopup() {
     closeButton.addEventListener('click', function () {
         popup.classList.remove('popup_opened');
+        page.style.overflow = 'auto';
     });
 }
 
@@ -40,6 +43,7 @@ function formSubmitHandler(evt) {
     newDescription.textContent = jobInput;// Вставьте новые значения с помощью textContent
 
     popup.classList.remove('popup_opened');
+    page.style.overflow = 'auto';
 }
 
 // Прикрепляем обработчик к форме:

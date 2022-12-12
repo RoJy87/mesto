@@ -35,65 +35,67 @@
 
     <!-- Блок places -->
 
-    <section class="places">
-      <article class="place">
+    <section>
+      <ul class="places">
+      <li class="place">
         <img src="./image/place__karachaevsk.jpg" alt="Старинный храм г. Карачаевск" class="place__photo">
         <div class="place__wrapper">
           <h2 class="place__name">Карачаевск</h2>
           <button type="button" class="place__like-btn button"></button>
         </div>
-      </article>
-      <article class="place">
+      </li>
+      <li class="place">
         <img src="./image/place__polka.jpg" alt="Мезмай - Орлинная полка" class="place__photo">
         <div class="place__wrapper">
           <h2 class="place__name">Мезмай</h2>
           <button type="button" class="place__like-btn button"></button>
         </div>
-      </article>
-      <article class="place">
-        <img src="./image/place__elbrus.jpg" alt="Эльбрус button" class="place__photo">
+      </li>
+      <li class="place">
+        <img src="./image/place__elbrus.jpg" alt="Эльбрус" class="place__photo">
         <div class="place__wrapper">
           <h2 class="place__name">Эльбрус</h2>
           <button type="button" class="place__like-btn button"></button>
         </div>
-      </article>
-      <article class="place">
+      </li>
+      <li class="place">
         <img src="./image/place__dombai.jpg" alt="Домбай" class="place__photo">
         <div class="place__wrapper">
           <h2 class="place__name">Домбай</h2>
           <button type="button" class="place__like-btn button"></button>
         </div>
-      </article>
-      <article class="place">
-        <img src="./image/place__multinskoe.jpg" alt="Мультинской озеро Алтай" class="place__photo">
+      </li>
+      <li class="place">
+        <img src="./image/place__multinskoe.jpg" alt="Мультинское озеро Алтай" class="place__photo">
         <div class="place__wrapper">
           <h2 class="place__name">Алтай</h2>
           <button type="button" class="place__like-btn button"></button>
         </div>
-      </article>
-      <article class="place">
+      </li>
+      <li class="place">
         <img src="./image/place__sayani.jpg" alt="Саяны горная цепь" class="place__photo">
         <div class="place__wrapper">
           <h2 class="place__name">Саяны горная цепь</h2>
           <button type="button" class="place__like-btn button"></button>
         </div>
-      </article>
+      </li>
+    </ul>
     </section>
 
     <!-- Блок popup -->
 
     <section class="popup">
-      <article class="popup__container">
+      <div class="popup__container">
         <button class="popup__close-btn button" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
         <form action="/#" class="popup__form-data" id="form-data" method="post">
           <input class="popup__form-field popup__form-name" tabindex="1" type="text" name="name" value="Жак-Ив Кусто"
-            placeholder="Введите имя">
+            placeholder="Имя">
           <input class="popup__form-field popup__form-status" tabindex="2" type="text" name="status"
-            value="Исследователь океана" placeholder="Введите статус">
+            value="Исследователь океана" placeholder="О себе">
         </form>
         <button type="submit" form="form-data" class="popup__save-btn button">Сохранить</button>
-      </article>
+      </div>
     </section>
   </main>
 
