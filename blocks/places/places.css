@@ -2,17 +2,15 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px 17px;
+  margin-bottom: 50px;
 }
 
 @media (min-width: 768px) {
   .places {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(230px, 282px));
-    gap: 20px 17px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     margin-bottom: 67px;
   }
 }

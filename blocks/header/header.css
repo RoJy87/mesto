@@ -1,7 +1,7 @@
 .header {
   max-width: 320px;
   margin: 28px auto 42px;
-  min-height: 56px;
+  padding-bottom: 32px;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
@@ -9,6 +9,6 @@
   .header {
     max-width: 880px;
     margin: 45px auto 40px;
-    min-height: 74px;
+    padding-bottom: 41px;
   }
 }

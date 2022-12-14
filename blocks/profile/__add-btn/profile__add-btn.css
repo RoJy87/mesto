@@ -1,16 +1,17 @@
 .profile__add-btn {
   box-sizing: border-box;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #FFF;
   border-radius: 2px;
-  max-width: 282px;
-  width: 100%;
+  width: 282px;
   min-height: 50px;
   background: url('../../../image/add__button-icon.svg') no-repeat center / 16px;
+  background-color: transparent;
 }
 
 @media (min-width: 768px) {
   .profile__add-btn {
     margin-left: auto;
-    max-width: 150px;
+    width: 150px;
+    background-size: 22px;
   }
 }

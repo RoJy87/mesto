@@ -7,7 +7,7 @@
   color: #545454;
 }
 
-@media (min-width: 786px) {
+@media (min-width: 768px) {
   .footer__copyright {
     margin-left: 0;
     font-size: 18px;

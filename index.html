@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
+  <title lang="en">Mesto</title>
 </head>
 
 <body class="page">
@@ -14,7 +14,7 @@
   <!-- Блок header -->
 
   <header class="header">
-    <img src="./image/logo.svg" alt="Логотип" class="header__logo">
+    <img src="./image/logo.svg" alt="Логотип Место" class="header__logo">
   </header>
 
   <!-- Блок main // profile -->
@@ -26,77 +26,86 @@
       <div class="profile__info">
         <div class="profile__wrapper">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-btn button"></button>
+          <p class="profile__description">Исследователь океана</p>
         </div>
-        <p class="profile__description">Исследователь океана</p>
+        <button aria-label="Редактировать профиль" type="button" class="profile__edit-btn button"></button>
       </div>
-      <button type="button" class="profile__add-btn button"></button>
+      <button aria-label="Добавить место" type="button" class="profile__add-btn button"></button>
     </section>
 
     <!-- Блок places -->
 
     <section>
       <ul class="places">
-      <li class="place">
-        <img src="./image/place__karachaevsk.jpg" alt="Старинный храм г. Карачаевск" class="place__photo">
-        <div class="place__wrapper">
-          <h2 class="place__name">Карачаевск</h2>
-          <button type="button" class="place__like-btn button"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img src="./image/place__polka.jpg" alt="Мезмай - Орлинная полка" class="place__photo">
-        <div class="place__wrapper">
-          <h2 class="place__name">Мезмай</h2>
-          <button type="button" class="place__like-btn button"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img src="./image/place__elbrus.jpg" alt="Эльбрус" class="place__photo">
-        <div class="place__wrapper">
-          <h2 class="place__name">Эльбрус</h2>
-          <button type="button" class="place__like-btn button"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img src="./image/place__dombai.jpg" alt="Домбай" class="place__photo">
-        <div class="place__wrapper">
-          <h2 class="place__name">Домбай</h2>
-          <button type="button" class="place__like-btn button"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img src="./image/place__multinskoe.jpg" alt="Мультинское озеро Алтай" class="place__photo">
-        <div class="place__wrapper">
-          <h2 class="place__name">Алтай</h2>
-          <button type="button" class="place__like-btn button"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img src="./image/place__sayani.jpg" alt="Саяны горная цепь" class="place__photo">
-        <div class="place__wrapper">
-          <h2 class="place__name">Саяны горная цепь</h2>
-          <button type="button" class="place__like-btn button"></button>
-        </div>
-      </li>
-    </ul>
+        <li class="places__items">
+          <article class="place">
+            <div class="place__wrapper-img">
+              <img src="./image/place__karachaevsk.jpg" alt="Старинный храм г. Карачаевск" class="place__photo">
+            </div>
+            <div class="place__wrapper-name">
+              <h2 class="place__name">Карачаевск</h2>
+              <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__items">
+          <article class="place">
+            <div class="place__wrapper-img">
+              <img src="./image/place__polka.jpg" alt="Мезмай - Орлинная полка" class="place__photo">
+            </div>
+            <div class="place__wrapper-name">
+              <h2 class="place__name">Мезмай</h2>
+              <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__items">
+          <article class="place">
+            <div class="place__wrapper-img">
+              <img src="./image/place__elbrus.jpg" alt="Эльбрус" class="place__photo">
+            </div>
+            <div class="place__wrapper-name">
+              <h2 class="place__name">Эльбрус</h2>
+              <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__items">
+          <article class="place">
+            <div class="place__wrapper-img">
+              <img src="./image/place__dombai.jpg" alt="Домбай" class="place__photo">
+            </div>
+            <div class="place__wrapper-name">
+              <h2 class="place__name">Домбай</h2>
+              <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__items">
+          <article class="place">
+            <div class="place__wrapper-img">
+              <img src="./image/place__multinskoe.jpg" alt="Мультинское озеро Алтай" class="place__photo">
+            </div>
+            <div class="place__wrapper-name">
+              <h2 class="place__name">Алтай</h2>
+              <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__items">
+          <article class="place">
+            <div class="place__wrapper-img">
+              <img src="./image/place__sayani.jpg" alt="Саяны горная цепь" class="place__photo">
+            </div>
+            <div class="place__wrapper-name">
+              <h2 class="place__name">Саяны горная цепь</h2>
+              <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
+            </div>
+          </article>
+        </li>
+      </ul>
     </section>
 
-    <!-- Блок popup -->
-
-    <section class="popup">
-      <div class="popup__container">
-        <button class="popup__close-btn button" type="button"></button>
-        <h2 class="popup__header">Редактировать профиль</h2>
-        <form action="/#" class="popup__form-data" id="form-data" method="post">
-          <input class="popup__form-field popup__form-name" tabindex="1" type="text" name="name" value="Жак-Ив Кусто"
-            placeholder="Имя">
-          <input class="popup__form-field popup__form-status" tabindex="2" type="text" name="status"
-            value="Исследователь океана" placeholder="О себе">
-        </form>
-        <button type="submit" form="form-data" class="popup__save-btn button">Сохранить</button>
-      </div>
-    </section>
   </main>
 
   <!-- Блок footer -->
@@ -104,7 +113,24 @@
   <footer class="footer">
     <p class="footer__copyright">&#169; 2022. Данил Симонов</p>
   </footer>
-  <script src="./script/script.js"></script>
+
+  <!-- Блок popup -->
+
+  <div class="popup">
+    <div class="popup__container">
+      <button aria-label="Закрыть" class="popup__close-btn button" type="button"></button>
+      <h2 class="popup__header">Редактировать профиль</h2>
+      <form action="/#" class="popup__form-data" id="form-data" name="form-data" method="post">
+        <input class="popup__form-field popup__form-field_value_name" tabindex="1" type="text" name="name" value="Имя"
+          placeholder="Имя">
+        <input class="popup__form-field popup__form-field_value_status" tabindex="2" type="text" name="status"
+          value="О себе" placeholder="О себе">
+      </form>
+      <button type="submit" form="form-data" class="popup__save-btn button">Сохранить</button>
+    </div>
+  </div>
+
+  <script src="./script/script.js" defer></script>
 </body>
 
 </html>

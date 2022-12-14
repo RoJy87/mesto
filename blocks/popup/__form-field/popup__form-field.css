@@ -1,18 +1,10 @@
 .popup__form-field {
-  box-sizing: border-box;
-  max-width: 238px;
   width: 100%;
-  padding: 0 0 7px;
+  padding: 0 0 8px;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.21;
   color: #000;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-@media (min-width: 768px) {
-  .popup__form-field {
-    max-width: 358px;
-  }
 }

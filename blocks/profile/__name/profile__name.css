@@ -1,14 +1,11 @@
 .profile__name {
-  box-sizing: border-box;
-  max-width: 282px;
-  width: 100%;
+  width: 189px;
   margin: 0;
-  padding: 0 28px;
   font-weight: 500;
   font-size: 27px;
   line-height: 1.22;
   text-align: center;
-  color: #FFFFFF;
+  color: #FFF;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -16,10 +13,9 @@
 
 @media (min-width: 768px) {
   .profile__name {
-    max-width: 336px;
+    width: 294px;
     font-size: 42px;
     line-height: 1.14;
     text-align: start;
-    padding: 0;
   }
 }
