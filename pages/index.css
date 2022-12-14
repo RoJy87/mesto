@@ -4,7 +4,7 @@
 
 /* fonts */
 
-@import url("../vendor/fonts/inter.css");
+@import url("../vendor/fonts/fonts.css");
 
 /* button */
 
@@ -35,7 +35,6 @@
 @import url("../blocks/places/places.css");
 @import url("../blocks/place/place.css");
 @import url("../blocks/place/__photo/place__photo.css");
-@import url("../blocks/place/__wrapper-img/place__wrapper-img.css");
 @import url("../blocks/place/__wrapper-name/place__wrapper-name.css");
 @import url("../blocks/place/__name/place__name.css");
 @import url("../blocks/place/__like-btn/place__like-btn.css");

@@ -3,15 +3,17 @@
   border: 2px solid #FFF;
   border-radius: 2px;
   width: 282px;
-  min-height: 50px;
-  background: url('../../../image/add__button-icon.svg') no-repeat center / 16px;
-  background-color: transparent;
+  height: 50px;
+  background-image: url('../../../image/add__button-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
 }
 
 @media (min-width: 768px) {
   .profile__add-btn {
     margin-left: auto;
     width: 150px;
-    background-size: 22px;
+    background-size: 22px 22px;
   }
 }
