@@ -1,22 +1,30 @@
 let page = document.querySelector('.page');
 let editButton = page.querySelector('.profile__edit-btn');
-let popup = page.querySelector('.popup');
-let closeButton = popup.querySelector('.popup__close-btn');
-let formElement = popup.querySelector('.popup__form-data');
-let nameInput = popup.querySelector('.popup__form-field_value_name');
-let jobInput = popup.querySelector('.popup__form-field_value_status');
+let addButton = page.querySelector('.profile__add-btn');
+let popup = page.querySelectorAll('.popup');
+let popupContainer = page.querySelector('.popup__container');
+let popupEditProfile = page.querySelector('.popup_type_edit-profile');
+let popupAddPlace = page.querySelector('.popup_type_add-place');
+let closeButton = page.querySelectorAll('.popup__close-btn');
+let formElement = page.querySelector('.popup__form-data');
+let nameInput = page.querySelector('.popup__form-field_value_name');
+let jobInput = page.querySelector('.popup__form-field_value_status');
 let profileName = page.querySelector('.profile__name');
 let profileDescription = page.querySelector('.profile__description');
 
 
-function openPopup() {
-  popup.classList.add('popup_opened');
+function editProfile() {
+  popupEditProfile.classList.add('popup_opened');
   changeFormAttributeValue();
   changeProfileValue();
 }
 
+function addPlace() {
+  popupAddPlace.classList.add('popup_opened');
+}
+
 function closePopup() {
-  popup.classList.remove('popup_opened');
+  popup.forEach(e => {e.classList.remove('popup_opened')});
 }
 
 function changeFormAttributeValue() {
@@ -36,6 +44,7 @@ function formSubmitHandler(evt) {
   closePopup();
 }
 
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
+editButton.addEventListener('click', editProfile);
+addButton.addEventListener('click', addPlace);
+closeButton.forEach(e => {e.addEventListener('click', closePopup)});
 formElement.addEventListener('submit', formSubmitHandler);

@@ -104,7 +104,7 @@
 
   <!-- Блок popup -->
 
-  <div class="popup">
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button aria-label="Закрыть" class="popup__close-btn button" type="button"></button>
       <h2 class="popup__header">Редактировать профиль</h2>
@@ -115,6 +115,20 @@
           value="О себе" placeholder="О себе">
       </form>
       <button type="submit" form="form-data" class="popup__save-btn button">Сохранить</button>
+    </div>
+  </div>
+
+  <div class="popup popup_type_add-place">
+    <div class="popup__container">
+      <button aria-label="Закрыть" class="popup__close-btn button" type="button"></button>
+      <h2 class="popup__header">Новое место</h2>
+      <form action="/#" class="popup__form-data" id="form-data" name="formData" method="post">
+        <input class="popup__form-field popup__form-field_value_name" tabindex="1" type="text" name="name" value="Название"
+          placeholder="Название">
+        <input class="popup__form-field popup__form-field_value_status" tabindex="2" type="text" name="status"
+          value="Ссылка на картинку" placeholder="Ссылка на картинку">
+      </form>
+      <button type="submit" form="form-data" class="popup__save-btn button">Создать</button>
     </div>
   </div>
 
