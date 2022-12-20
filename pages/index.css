@@ -10,6 +10,10 @@
 
 @import url("../blocks/button/button.css");
 
+/* form */
+
+@import url("../blocks/form/form.css");
+
 /* блок page */
 
 @import url("../blocks/page/page.css");
@@ -33,12 +37,14 @@
 /* блок places */
 
 @import url("../blocks/places/places.css");
+@import url("../blocks/places/__items/places__items.css");
 @import url("../blocks/place/place.css");
 @import url("../blocks/place/__photo/place__photo.css");
 @import url("../blocks/place/__wrapper-name/place__wrapper-name.css");
 @import url("../blocks/place/__name/place__name.css");
 @import url("../blocks/place/__like-btn/place__like-btn.css");
 @import url("../blocks/place/__like-btn/_active/place__like-btn_active.css");
+@import url("../blocks/place/__delete-btn/place__delete-btn.css");
 
 
 /* блок footer */
@@ -52,7 +58,6 @@
 @import url("../blocks/popup/__container/popup__container.css");
 @import url("../blocks/popup/__close-btn/popup__close-btn.css");
 @import url("../blocks/popup/__header/popup__header.css");
-@import url("../blocks/popup/__form-data/popup__form-data.css");
 @import url("../blocks/popup/__form-field/popup__form-field.css");
 @import url("../blocks/popup/__save-btn/popup__save-btn.css");
 

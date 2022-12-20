@@ -45,6 +45,7 @@
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
             </div>
           </article>
+          <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
         </li>
         <li class="places__items">
           <article class="place">
@@ -54,6 +55,7 @@
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
             </div>
           </article>
+          <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
         </li>
         <li class="places__items">
           <article class="place">
@@ -63,6 +65,7 @@
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
             </div>
           </article>
+          <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
         </li>
         <li class="places__items">
           <article class="place">
@@ -72,6 +75,7 @@
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
             </div>
           </article>
+          <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
         </li>
         <li class="places__items">
           <article class="place">
@@ -81,6 +85,7 @@
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
             </div>
           </article>
+          <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
         </li>
         <li class="places__items">
           <article class="place">
@@ -90,6 +95,7 @@
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
             </div>
           </article>
+          <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
         </li>
       </ul>
     </section>
@@ -108,13 +114,13 @@
     <div class="popup__container">
       <button aria-label="Закрыть" class="popup__close-btn button" type="button"></button>
       <h2 class="popup__header">Редактировать профиль</h2>
-      <form action="/#" class="popup__form-data" id="form-data" name="formData" method="post">
+      <form action="/" class="form popup__form-data" id="form-edit-profile" name="formEditProfile" method="post">
         <input class="popup__form-field popup__form-field_value_name" tabindex="1" type="text" name="name" value="Имя"
           placeholder="Имя">
         <input class="popup__form-field popup__form-field_value_status" tabindex="2" type="text" name="status"
           value="О себе" placeholder="О себе">
       </form>
-      <button type="submit" form="form-data" class="popup__save-btn button">Сохранить</button>
+      <button type="submit" form="form-edit-profile" class="popup__save-btn button">Сохранить</button>
     </div>
   </div>
 
@@ -122,13 +128,13 @@
     <div class="popup__container">
       <button aria-label="Закрыть" class="popup__close-btn button" type="button"></button>
       <h2 class="popup__header">Новое место</h2>
-      <form action="/#" class="popup__form-data" id="form-data" name="formData" method="post">
-        <input class="popup__form-field popup__form-field_value_name" tabindex="1" type="text" name="name" value="Название"
-          placeholder="Название">
-        <input class="popup__form-field popup__form-field_value_status" tabindex="2" type="text" name="status"
-          value="Ссылка на картинку" placeholder="Ссылка на картинку">
+      <form action="/" class="form popup__form-place" id="form-add-place" name="formAddPlace" method="post">
+        <input class="popup__form-field popup__form-field_value_place-name" tabindex="3" type="text" name="place-name" value=""
+          placeholder="Название места">
+        <input class="popup__form-field popup__form-field_value_url" tabindex="4" type="text" name="url"
+          value="" placeholder="Ссылка на картинку">
       </form>
-      <button type="submit" form="form-data" class="popup__save-btn button">Создать</button>
+      <button type="submit" form="form-add-place" class="popup__save-btn button">Создать</button>
     </div>
   </div>
 
