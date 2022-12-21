@@ -37,9 +37,11 @@
 
     <section aria-label="Интересные места для посещения">
       <ul class="places">
-        <li class="places__items">
+        <!-- <li class="places__items">
           <article class="place">
-            <img src="./image/place__karachaevsk.jpg" alt="Старинный храм г. Карачаевск" class="place__photo">
+            <button type="button" class="place__img-btn button">
+              <img src="./image/place__karachaevsk.jpg" alt="Старинный храм г. Карачаевск" class="place__photo">
+            </button>
             <div class="place__wrapper-name">
               <h2 class="place__name">Карачаевск</h2>
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
@@ -49,7 +51,9 @@
         </li>
         <li class="places__items">
           <article class="place">
-            <img src="./image/place__polka.jpg" alt="Мезмай - Орлинная полка" class="place__photo">
+            <button type="button" class="place__img-btn button">
+              <img src="./image/place__polka.jpg" alt="Мезмай - Орлинная полка" class="place__photo">
+            </button>
             <div class="place__wrapper-name">
               <h2 class="place__name">Мезмай</h2>
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
@@ -59,7 +63,9 @@
         </li>
         <li class="places__items">
           <article class="place">
-            <img src="./image/place__elbrus.jpg" alt="Эльбрус" class="place__photo">
+            <button type="button" class="place__img-btn button">
+              <img src="./image/place__elbrus.jpg" alt="Эльбрус" class="place__photo">
+            </button>
             <div class="place__wrapper-name">
               <h2 class="place__name">Эльбрус</h2>
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
@@ -69,7 +75,9 @@
         </li>
         <li class="places__items">
           <article class="place">
-            <img src="./image/place__dombai.jpg" alt="Домбай" class="place__photo">
+            <button type="button" class="place__img-btn button">
+              <img src="./image/place__dombai.jpg" alt="Домбай" class="place__photo">
+            </button>
             <div class="place__wrapper-name">
               <h2 class="place__name">Домбай</h2>
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
@@ -79,7 +87,9 @@
         </li>
         <li class="places__items">
           <article class="place">
-            <img src="./image/place__multinskoe.jpg" alt="Мультинское озеро Алтай" class="place__photo">
+            <button type="button" class="place__img-btn button">
+              <img src="./image/place__altai.jpg" alt="Горный Алтай" class="place__photo">
+            </button>
             <div class="place__wrapper-name">
               <h2 class="place__name">Алтай</h2>
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
@@ -89,14 +99,16 @@
         </li>
         <li class="places__items">
           <article class="place">
-            <img src="./image/place__sayani.jpg" alt="Саяны горная цепь" class="place__photo">
+            <button type="button" class="place__img-btn button">
+              <img src="./image/place__sayani.jpg" alt="Саяны горная цепь" class="place__photo">
+            </button>
             <div class="place__wrapper-name">
               <h2 class="place__name">Саяны горная цепь</h2>
               <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
             </div>
           </article>
           <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
-        </li>
+        </li> -->
       </ul>
     </section>
 
@@ -129,15 +141,26 @@
       <button aria-label="Закрыть" class="popup__close-btn button" type="button"></button>
       <h2 class="popup__header">Новое место</h2>
       <form action="/" class="form popup__form-place" id="form-add-place" name="formAddPlace" method="post">
-        <input class="popup__form-field popup__form-field_value_place-name" tabindex="3" type="text" name="place-name" value=""
-          placeholder="Название места">
-        <input class="popup__form-field popup__form-field_value_url" tabindex="4" type="text" name="url"
-          value="" placeholder="Ссылка на картинку">
+        <input class="popup__form-field popup__form-field_value_place-name" tabindex="3" type="text" name="place-name"
+          value="" placeholder="Название места">
+        <input class="popup__form-field popup__form-field_value_url" tabindex="4" type="text" name="url" value=""
+          placeholder="Ссылка на картинку">
       </form>
       <button type="submit" form="form-add-place" class="popup__save-btn button">Создать</button>
     </div>
   </div>
 
+  <div class="popup popup_type_image">
+    <div class="popup__container popup__container_style_reset">
+      <button aria-label="Закрыть" class="popup__close-btn button" type="button"></button>
+      <figure class="popup__img-block">
+        <img src="" alt="" class="popup__photo">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <script src="./script/initialCards.js" defer></script>
   <script src="./script/script.js" defer></script>
 </body>
 
