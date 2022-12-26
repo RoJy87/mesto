@@ -22,8 +22,8 @@ let jobValue = popupEditProfile.querySelector('.popup__form-field_value_status')
 // Popup Добавить новое место
 let popupAddPlace = page.querySelector('.popup_type_add-place');
 let formPlace = popupAddPlace.querySelector('.popup__form-place');
-let placeNameValue = popupAddPlace.querySelector('.popup__form-field_value_place-name');
-let urlValue = popupAddPlace.querySelector('.popup__form-field_value_url');
+let placeNameInput = popupAddPlace.querySelector('.popup__form-field_value_place-name');
+let placeUrlInput = popupAddPlace.querySelector('.popup__form-field_value_url');
 
 // Popup Увеличить картинку
 let popupImage = page.querySelector('.popup_type_image');
@@ -64,33 +64,28 @@ function addPlace() {
 
 // Очищаем поля введенных данных после сохранения
 function clearNewPlaceValue() {
-  placeNameValue.value = '';
-  urlValue.value = '';
+  placeNameInput.value = '';
+  placeUrlInput.value = '';
 }
 
 // Вставляем новую карточку
-function insertNewCard() {
-  places.insertAdjacentHTML('afterbegin', `
-  <li class="places__items">
-    <article class="place">
-      <button type="button" class="place__img-btn button">
-        <img src="${urlValue.value}" alt="${placeNameValue.value}" class="place__photo">
-      </button>
-      <div class="place__wrapper-name">
-        <h2 class="place__name">${placeNameValue.value}</h2>
-        <button aria-label="Отметить мне нравиться" type="button" class="place__like-btn button"></button>
-      </div>
-    </article>
-    <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
-  </li>
-        `);
+function insertNewCard(placeName, placeUrl) {
+  const placeTemplate = document.querySelector('.places__template').content;
+  const placeElement = placeTemplate.querySelector('.places__items').cloneNode(true);
+
+  placeElement.querySelector('.place__photo').src = placeUrl;
+  placeElement.querySelector('.place__photo').alt = placeName;
+  placeElement.querySelector('.place__name').textContent = placeName;
+
+  places.prepend(placeElement);
+
   clearNewPlaceValue();
 }
 
 for (let cards in initialCards) {
-  urlValue.value = initialCards[cards].link;
-  placeNameValue.value = initialCards[cards].name;
-  insertNewCard();
+  placeNameInput.value = initialCards[cards].name;
+  placeUrlInput.value = initialCards[cards].link;
+  insertNewCard(placeNameInput.value, placeUrlInput.value);
 }
 
 // Открываем popup с фото
@@ -98,10 +93,10 @@ function openImage(e) {
   console.dir(e.target);
   if (e.target.classList.contains('place__photo')) {
     popupImage.classList.add('popup_opened');
+    caption.textContent = e.target.getAttribute('alt');
+    popupPhoto.setAttribute('alt', e.target.getAttribute('alt'));
+    popupPhoto.setAttribute('src', e.target.getAttribute('src'));
   }
-  caption.textContent = e.target.getAttribute('alt');
-  popupPhoto.setAttribute('alt', e.target.getAttribute('alt'));
-  popupPhoto.setAttribute('src', e.target.getAttribute('src'));
 }
 
 
@@ -122,17 +117,18 @@ function removeCard(e) {
 
 // Закрываем любую форму
 function closePopup(e) {
-  if (e.target.classList.contains('popup__close-btn')) {
-    e.target.closest('.popup').classList.remove('popup_opened') };
-  if (e.target.classList.contains('popup')) {
-    e.target.closest('.popup').classList.remove('popup_opened') };
-  if (e.keyCode == 27) {
-    popups.forEach(n => {n.classList.remove('popup_opened')}) };
-  }
+  if (e.target.classList.contains('popup__close-btn')
+    || e.target.classList.contains('popup')) {
+    e.target.closest('.popup').classList.remove('popup_opened')
+  };
+  if (e.keyCode === 27) {
+    popups.forEach(n => { n.classList.remove('popup_opened') })
+  };
+}
 
-  function savePopupData() {
-    popups.forEach(n => {n.classList.remove('popup_opened')});
-    }
+function savePopupData() {
+  popups.forEach(n => { n.classList.remove('popup_opened') });
+}
 
 
 // Вызываем функцию изменения данных профайла
@@ -145,7 +141,7 @@ function formSubmitHandler(evt) {
 // Вызываем функцию добавления новой карточки
 function formAddNewPlace(evt) {
   evt.preventDefault();
-  insertNewCard()
+  insertNewCard(placeNameInput.value, placeUrlInput.value)
   savePopupData();
 }
 
