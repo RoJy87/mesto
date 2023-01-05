@@ -14,9 +14,9 @@ let closeButtons = page.querySelectorAll('.popup__close-btn');
 
 // Popup Редактировать профиль
 let popupEditProfile = page.querySelector('.popup_type_edit-profile');
-let formElement = popupEditProfile.querySelector('.popup__form-data');
-let nameValue = popupEditProfile.querySelector('.popup__form-field_value_name');
-let jobValue = popupEditProfile.querySelector('.popup__form-field_value_status');
+let formProfile = popupEditProfile.querySelector('.popup__form-data');
+let nameInput = popupEditProfile.querySelector('.popup__form-field_value_name');
+let jobInput = popupEditProfile.querySelector('.popup__form-field_value_status');
 
 
 // Popup Добавить новое место
@@ -25,18 +25,16 @@ let formPlace = popupAddPlace.querySelector('.popup__form-place');
 let placeNameInput = popupAddPlace.querySelector('.popup__form-field_value_place-name');
 let placeUrlInput = popupAddPlace.querySelector('.popup__form-field_value_url');
 
-// Popup Увеличить картинку
-let popupImage = page.querySelector('.popup_type_image');
-let imageButton = page.querySelector('.place__img-btn');
-let cardPhoto = page.querySelector('.place__photo');
-let popupPhoto = page.querySelector('.popup__photo');
-let caption = page.querySelector('.popup__caption');
-
-// Блок places - лайки
+// Блок places - лайки, и Popup Увеличить картинку
 let places = page.querySelector('.places');
 let likeButton = places.querySelector('.place__like-btn');
-let deleteButton = document.querySelectorAll('.place__delete-btn');
+let deleteButton = places.querySelector('.place__delete-btn');
+let imageButton = places.querySelector('.place__img-btn');
+let cardPhoto = places.querySelector('.place__photo');
 
+let popupImage = page.querySelector('.popup_type_image');
+let popupPhoto = page.querySelector('.popup__photo');
+let caption = page.querySelector('.popup__caption');
 
 // Открытаем форму редактирования профайла
 function editProfile() {
@@ -46,14 +44,14 @@ function editProfile() {
 }
 // Меняем значения атрибутов в форме Профайл
 function changeFormAttributeValue() {
-  nameValue.setAttribute('value', profileName.textContent);
-  jobValue.setAttribute('value', profileDescription.textContent);
+  nameInput.setAttribute('value', profileName.textContent);
+  jobInput.setAttribute('value', profileDescription.textContent);
 }
 
 // Редактируем данные в Профайле
 function changeProfileValue() {
-  profileName.textContent = nameValue.value;
-  profileDescription.textContent = jobValue.value;
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = jobInput.value;
   changeFormAttributeValue();
 }
 
@@ -82,6 +80,7 @@ function insertNewCard(placeName, placeUrl) {
   clearNewPlaceValue();
 }
 
+// Вставляем карточки из массива
 for (let cards in initialCards) {
   placeNameInput.value = initialCards[cards].name;
   placeUrlInput.value = initialCards[cards].link;
@@ -90,7 +89,6 @@ for (let cards in initialCards) {
 
 // Открываем popup с фото
 function openImage(e) {
-  console.dir(e.target);
   if (e.target.classList.contains('place__photo')) {
     popupImage.classList.add('popup_opened');
     caption.textContent = e.target.getAttribute('alt');
@@ -98,7 +96,6 @@ function openImage(e) {
     popupPhoto.setAttribute('src', e.target.getAttribute('src'));
   }
 }
-
 
 // Добавляем активный клас кнопке лайк
 function addLike(e) {
@@ -118,7 +115,8 @@ function removeCard(e) {
 // Закрываем любую форму
 function closePopup(e) {
   if (e.target.classList.contains('popup__close-btn')
-    || e.target.classList.contains('popup')) {
+    || e.target.classList.contains('popup')
+    || e.target.classList.contains('popup__save-btn')) {
     e.target.closest('.popup').classList.remove('popup_opened')
   };
   if (e.keyCode === 27) {
@@ -126,23 +124,19 @@ function closePopup(e) {
   };
 }
 
-function savePopupData() {
-  popups.forEach(n => { n.classList.remove('popup_opened') });
-}
-
 
 // Вызываем функцию изменения данных профайла
 function formSubmitHandler(evt) {
   evt.preventDefault();
   changeProfileValue();
-  savePopupData();
+  closePopup();
 }
 
 // Вызываем функцию добавления новой карточки
 function formAddNewPlace(evt) {
   evt.preventDefault();
   insertNewCard(placeNameInput.value, placeUrlInput.value)
-  savePopupData();
+  closePopup();
 }
 
 // Навешиваем события
@@ -150,7 +144,7 @@ editButton.addEventListener('click', editProfile);
 addButton.addEventListener('click', addPlace);
 page.addEventListener('click', closePopup);
 page.addEventListener('keydown', closePopup);
-formElement.addEventListener('submit', formSubmitHandler);
+formProfile.addEventListener('submit', formSubmitHandler);
 formPlace.addEventListener('submit', formAddNewPlace);
 places.addEventListener('click', addLike);
 places.addEventListener('click', removeCard);
