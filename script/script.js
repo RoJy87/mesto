@@ -10,7 +10,6 @@ let profileDescription = profile.querySelector('.profile__description');
 
 // Popups
 let popups = page.querySelectorAll('.popup');
-let closeButtons = page.querySelectorAll('.popup__close-btn');
 
 // Popup Редактировать профиль
 let popupEditProfile = page.querySelector('.popup_type_edit-profile');
@@ -18,20 +17,14 @@ let formProfile = popupEditProfile.querySelector('.popup__form-data');
 let nameInput = popupEditProfile.querySelector('.popup__form-field_value_name');
 let jobInput = popupEditProfile.querySelector('.popup__form-field_value_status');
 
-
 // Popup Добавить новое место
 let popupAddPlace = page.querySelector('.popup_type_add-place');
 let formPlace = popupAddPlace.querySelector('.popup__form-place');
 let placeNameInput = popupAddPlace.querySelector('.popup__form-field_value_place-name');
 let placeUrlInput = popupAddPlace.querySelector('.popup__form-field_value_url');
 
-// Блок places - лайки, и Popup Увеличить картинку
+// Блок places, Popup Увеличить картинку
 let places = page.querySelector('.places');
-let likeButton = places.querySelector('.place__like-btn');
-let deleteButton = places.querySelector('.place__delete-btn');
-let imageButton = places.querySelector('.place__img-btn');
-let cardPhoto = places.querySelector('.place__photo');
-
 let popupImage = page.querySelector('.popup_type_image');
 let popupPhoto = page.querySelector('.popup__photo');
 let caption = page.querySelector('.popup__caption');
