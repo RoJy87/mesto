@@ -1,36 +1,36 @@
-let page = document.querySelector('.page');
+const page = document.querySelector('.page');
 
 // Профайл
 
-let profile = page.querySelector('.profile');
-let editButton = profile.querySelector('.profile__edit-btn');
-let addButton = profile.querySelector('.profile__add-btn');
-let profileName = profile.querySelector('.profile__name');
-let profileDescription = profile.querySelector('.profile__description');
+const profile = page.querySelector('.profile');
+const editButton = profile.querySelector('.profile__edit-btn');
+const addButton = profile.querySelector('.profile__add-btn');
+const profileName = profile.querySelector('.profile__name');
+const profileDescription = profile.querySelector('.profile__description');
 
 // Popups
-let popups = page.querySelectorAll('.popup');
+const popups = page.querySelectorAll('.popup');
 
 // Popup Редактировать профиль
-let popupEditProfile = page.querySelector('.popup_type_edit-profile');
-let formProfile = popupEditProfile.querySelector('.popup__form-data');
-let nameInput = popupEditProfile.querySelector('.popup__form-field_value_name');
-let jobInput = popupEditProfile.querySelector('.popup__form-field_value_status');
+const popupEditProfile = page.querySelector('.popup_type_edit-profile');
+const formProfile = popupEditProfile.querySelector('.popup__form-data');
+const nameInput = popupEditProfile.querySelector('.popup__form-field_value_name');
+const jobInput = popupEditProfile.querySelector('.popup__form-field_value_status');
 
 // Popup Добавить новое место
-let popupAddPlace = page.querySelector('.popup_type_add-place');
-let formPlace = popupAddPlace.querySelector('.popup__form-place');
-let placeNameInput = popupAddPlace.querySelector('.popup__form-field_value_place-name');
-let placeUrlInput = popupAddPlace.querySelector('.popup__form-field_value_url');
+const popupAddPlace = page.querySelector('.popup_type_add-place');
+const formPlace = popupAddPlace.querySelector('.popup__form-place');
+const placeNameInput = popupAddPlace.querySelector('.popup__form-field_value_place-name');
+const placeUrlInput = popupAddPlace.querySelector('.popup__form-field_value_url');
 
 // Блок places, Popup Увеличить картинку
-let places = page.querySelector('.places');
-let popupImage = page.querySelector('.popup_type_image');
-let popupPhoto = page.querySelector('.popup__photo');
-let caption = page.querySelector('.popup__caption');
+const places = page.querySelector('.places');
+const popupImage = page.querySelector('.popup_type_image');
+const popupPhoto = page.querySelector('.popup__photo');
+const caption = page.querySelector('.popup__caption');
 
 // Открытаем форму редактирования профайла
-function editProfile() {
+function openEditProfilePopup() {
   popupEditProfile.classList.add('popup_opened');
   changeFormAttributeValue();
   changeProfileValue();
@@ -49,7 +49,7 @@ function changeProfileValue() {
 }
 
 // Открываем форму добавления новой карточки
-function addPlace() {
+function openAddPlacePopup() {
   popupAddPlace.classList.add('popup_opened');
 }
 
@@ -101,8 +101,6 @@ function removeCard(e) {
   if (e.target.classList.contains('place__delete-btn')) {
     e.target.parentElement.remove()
   };
-  /* let element = this.parentElement;
-  element.remove(); */
 }
 
 // Закрываем любую форму
@@ -133,8 +131,8 @@ function formAddNewPlace(evt) {
 }
 
 // Навешиваем события
-editButton.addEventListener('click', editProfile);
-addButton.addEventListener('click', addPlace);
+editButton.addEventListener('click', openEditProfilePopup);
+addButton.addEventListener('click', openAddPlacePopup);
 page.addEventListener('click', closePopup);
 page.addEventListener('keydown', closePopup);
 formProfile.addEventListener('submit', formSubmitHandler);
