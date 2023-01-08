@@ -9,9 +9,6 @@ const addButton = profile.querySelector('.profile__add-btn');
 const profileName = profile.querySelector('.profile__name');
 const profileDescription = profile.querySelector('.profile__description');
 
-// Popups
-const popups = page.querySelectorAll('.popup');
-
 // Popup Редактировать профиль
 const popupEditProfile = page.querySelector('.popup_type_edit-profile');
 const formProfile = popupEditProfile.querySelector('.popup__form-data');
@@ -32,11 +29,15 @@ const caption = page.querySelector('.popup__caption');
 
 // Открываем Popup
 function openModalWindow(modalWindow) {
-  modalWindow.classList.add('popup_opened')
+  modalWindow.classList.add('popup_opened');
+  page.addEventListener('keydown', closePopupByEsc);
+  modalWindow.addEventListener('click', closePopup);
 }
 // Закрываем Popup
 function closeModalWindow(modalWindow) {
-  modalWindow.classList.remove('popup_opened')
+  modalWindow.classList.remove('popup_opened');
+  page.removeEventListener('keydown', closePopupByEsc);
+  modalWindow.removeEventListener('click', closePopup);
 }
 
 // Открываем форму редактирования профайла
@@ -118,14 +119,16 @@ function closePopup(e) {
   const targets = e.target.classList;
   if (targets.contains('popup__close-btn')
     || targets.contains('popup')
-    || targets.contains('popup__save-btn')
-    || (e.keyCode === ESC_BUTTON)) {
-    popups.forEach(n => {
-      if (n.classList.contains('popup_opened')) {
-        closeModalWindow(n)
-      }
-    })
-  };
+    || targets.contains('popup__save-btn')) {
+    closeModalWindow(e.target.closest('.popup'))
+  }
+}
+
+function closePopupByEsc(e) {
+  const popupActive = page.querySelector('.popup_opened');
+  if (e.keyCode === ESC_BUTTON) {
+    closeModalWindow(popupActive)
+  }
 }
 
 // Вызываем функцию изменения данных профайла
@@ -147,8 +150,6 @@ function formAddNewPlace(evt) {
 // Навешиваем события
 editButton.addEventListener('click', openEditProfilePopup);
 addButton.addEventListener('click', openAddPlacePopup);
-page.addEventListener('click', closePopup);
-page.addEventListener('keydown', closePopup);
 formProfile.addEventListener('submit', formEditProfile);
 formPlace.addEventListener('submit', formAddNewPlace);
 
