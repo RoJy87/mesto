@@ -61,11 +61,16 @@
 @import url("../blocks/popup/__close-btn/popup__close-btn.css");
 @import url("../blocks/popup/__header/popup__header.css");
 @import url("../blocks/popup/__form-field/popup__form-field.css");
+@import url("../blocks/popup/__input/popup__input.css");
+@import url("../blocks/popup/__input/_type/popup__input_type_error.css");
 @import url("../blocks/popup/__save-btn/popup__save-btn.css");
+@import url("../blocks/popup/__save-btn/_disabled/popup__save-btn_disabled.css");
 @import url("../blocks/popup/__img-block/popup__img-block.css");
 @import url("../blocks/popup/__photo/popup__photo.css");
 @import url("../blocks/popup/__caption/popup__caption.css");
-@import url("../blocks/popup//_type/popup_type_image.css");
+@import url("../blocks/popup/_type/popup_type_image.css");
+@import url("../blocks/popup/__error/popup__error.css");
+@import url("../blocks/popup/__error/_visible/popup__error_visible.css");
 
 
 

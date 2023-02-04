@@ -1,10 +1,4 @@
 .popup__form-field {
   width: 100%;
-  padding: 0 0 8px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.21;
-  color: #000;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
