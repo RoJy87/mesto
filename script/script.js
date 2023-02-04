@@ -32,18 +32,17 @@ function openModalWindow(modalWindow) {
   modalWindow.classList.add('popup_opened');
   page.addEventListener('keydown', closePopupByEsc);
   modalWindow.addEventListener('click', closePopup);
-  enableValidation(modalWindow, validationConfig);
   inputList.forEach(inputElement => {
     checkInputValidity(inputElement, validationConfig);
-    })
+  });
 }
 // Закрываем Popup
 function closeModalWindow(modalWindow) {
+  const formElement = modalWindow.querySelector(validationConfig.formSelector);
   modalWindow.classList.remove('popup_opened');
   page.removeEventListener('keydown', closePopupByEsc);
   modalWindow.removeEventListener('click', closePopup);
-  formPlace.reset();
-  formProfile.reset();
+  formElement.reset();
 }
 
 // Открываем форму редактирования профайла

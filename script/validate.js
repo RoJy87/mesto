@@ -10,20 +10,21 @@ const validationConfig = {
 const inputList = Array.from(document.querySelectorAll(validationConfig.inputSelector));
 
 // Функция включает валидацию форм
-function enableValidation(modalWindow, configList) {
-  const formElement = modalWindow.querySelector(configList.formSelector);
+function enableValidation(configList) {
+  const formElements = document.querySelectorAll(configList.formSelector);
+  formElements.forEach((formElement) => {
+  setEventListeners(formElement, configList);
+  toggleButtonState(formElement, configList);
+})};
+
+// Функция навешивает слушатели на инпуты
+function setEventListeners(formElement, configList) {
   formElement.addEventListener('submit', function (evt) {
     evt.preventDefault();
   });
   formElement.addEventListener('input', function () {
     toggleButtonState(formElement, configList);
   });
-  setEventListeners(configList);
-  toggleButtonState(formElement, configList);
-}
-
-// Функция навешивает слушатели на инпуты
-function setEventListeners(configList) {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(inputElement, configList);
@@ -63,7 +64,7 @@ function toggleButtonState(formElement, configList) {
   buttonElement.classList.toggle(configList.inactiveButtonClass, !isFormValid);
 }
 
-
+enableValidation(validationConfig);
 
 
 
