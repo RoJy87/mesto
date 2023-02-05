@@ -12,6 +12,11 @@
 @media (min-width: 768px) {
   .places {
     grid-template-columns: repeat(auto-fit, 282px);
+  }
+}
+@media (min-width: 920px) {
+  .places {
     margin-bottom: 67px;
+    justify-content: start;
   }
 }
