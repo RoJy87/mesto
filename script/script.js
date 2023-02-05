@@ -1,4 +1,5 @@
 const page = document.querySelector('.page');
+const placeTemplate = page.querySelector('.places__template').content;
 const ESC_BUTTON = 27;
 
 // Профайл
@@ -32,25 +33,44 @@ function openModalWindow(modalWindow) {
   modalWindow.classList.add('popup_opened');
   page.addEventListener('keydown', closePopupByEsc);
   modalWindow.addEventListener('click', closePopup);
-  inputList.forEach(inputElement => {
-    checkInputValidity(inputElement, validationConfig);
-  });
 }
+
 // Закрываем Popup
 function closeModalWindow(modalWindow) {
-  const formElement = modalWindow.querySelector(validationConfig.formSelector);
   modalWindow.classList.remove('popup_opened');
   page.removeEventListener('keydown', closePopupByEsc);
   modalWindow.removeEventListener('click', closePopup);
+}
+
+function formReset(modalWindow) {
+  const formElement = modalWindow.querySelector(validationConfig.formSelector);
   formElement.reset();
 }
 
 // Открываем форму редактирования профайла
 function openEditProfilePopup() {
-  openModalWindow(popupEditProfile);
+  formReset(popupEditProfile);
   changeFormAttributeValue();
   changeProfileValue();
+  cleanInputError();
+  openModalWindow(popupEditProfile);
 }
+
+// Открываем форму добавления новой карточки
+function openAddPlacePopup() {
+  setButtonDisabled(popupAddPlace);
+  formReset(popupAddPlace);
+  cleanInputError();
+  openModalWindow(popupAddPlace);
+}
+
+// Октлючаем кнопку сохранения при открытии
+function setButtonDisabled(modalWindow) {
+  const buttonElement = modalWindow.querySelector(`.popup__save-btn`);
+  buttonElement.disabled = true;
+  buttonElement.classList.add(validationConfig.inactiveButtonClass);
+}
+
 // Меняем значения атрибутов в форме Профайл
 function changeFormAttributeValue() {
   nameInput.setAttribute('value', profileName.textContent);
@@ -64,22 +84,18 @@ function changeProfileValue() {
   changeFormAttributeValue();
 }
 
-// Открываем форму добавления новой карточки
-function openAddPlacePopup() {
-  openModalWindow(popupAddPlace);
-}
-
 // Создаем карточку
 function createCard(name, link) {
-  const placeTemplate = document.querySelector('.places__template').content;
   const placeElement = placeTemplate.querySelector('.places__items').cloneNode(true);
   const likeButton = placeElement.querySelector('.place__like-btn');
   const deleteButton = placeElement.querySelector('.place__delete-btn');
   const imageButton = placeElement.querySelector('.place__img-btn');
+  const placePhoto = placeElement.querySelector('.place__photo');
+  const placeName = placeElement.querySelector('.place__name');
 
-  placeElement.querySelector('.place__photo').src = link;
-  placeElement.querySelector('.place__photo').alt = name;
-  placeElement.querySelector('.place__name').textContent = name;
+  placePhoto.src = link;
+  placePhoto.alt = name;
+  placeName.textContent = name;
 
   // Добавляем активный клас кнопке лайк
   function addLike() {
@@ -88,7 +104,7 @@ function createCard(name, link) {
 
   // Удаляем карточку
   function removeCard() {
-    deleteButton.parentElement.remove()
+    placeElement.remove()
   };
 
   // Открываем popup с фото
@@ -111,7 +127,7 @@ function createCard(name, link) {
 function renderCard(element, container) {
   const card = createCard(element.name, element.link);
   container.prepend(card);
-  formPlace.reset();
+  formReset(popupAddPlace);
 }
 
 // Вставляем карточки из массива
@@ -124,31 +140,31 @@ function closePopup(evt) {
   const targets = evt.target.classList;
   if (targets.contains('popup__close-btn')
     || targets.contains('popup')) {
-    closeModalWindow(evt.target.closest('.popup'));
+    closeModalWindow(evt.currentTarget);
   }
 }
 
 function closePopupByEsc(evt) {
-  const popupActive = page.querySelector('.popup_opened');
   if (evt.keyCode === ESC_BUTTON) {
+    const popupActive = page.querySelector('.popup_opened');
     closeModalWindow(popupActive)
   }
 }
 
 // Вызываем функцию изменения данных профайла
-function formEditProfile(evt) {
+function formEditProfile() {
   changeProfileValue();
-  closeModalWindow(evt.target.closest('.popup'));
+  closeModalWindow(popupEditProfile);
 }
 
 // Вызываем функцию добавления новой карточки
-function formAddNewPlace(evt) {
+function formAddNewPlace() {
   const card = {
     name: placeNameInput.value,
     link: placeUrlInput.value,
   }
   renderCard(card, places);
-  closeModalWindow(evt.target.closest('.popup'));
+  closeModalWindow(popupAddPlace);
 }
 
 // Навешиваем события

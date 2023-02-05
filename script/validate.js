@@ -13,9 +13,10 @@ const inputList = Array.from(document.querySelectorAll(validationConfig.inputSel
 function enableValidation(configList) {
   const formElements = document.querySelectorAll(configList.formSelector);
   formElements.forEach((formElement) => {
-  setEventListeners(formElement, configList);
-  toggleButtonState(formElement, configList);
-})};
+    setEventListeners(formElement, configList);
+    toggleButtonState(formElement, configList);
+  })
+};
 
 // Функция навешивает слушатели на инпуты
 function setEventListeners(formElement, configList) {
@@ -41,6 +42,13 @@ function checkInputValidity(inputElement, configList) {
     hideInputError(inputElement, errorElement, configList);
   }
 };
+
+function cleanInputError() {
+  inputList.forEach(inputElement => {
+    const errorElement = document.querySelector(`.${inputElement.id}-error`);
+    hideInputError(inputElement, errorElement, validationConfig);
+  });
+}
 
 // Функция отображения ошибки
 function showInputError(inputElement, errorElement, errorMessage, configList) {
