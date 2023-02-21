@@ -34,6 +34,11 @@ const formPlace = popupAddPlace.querySelector('.popup__form-place');
 const placeNameInput = popupAddPlace.querySelector('.popup__input_value_place-name');
 const placeUrlInput = popupAddPlace.querySelector('.popup__input_value_url');
 
+// Popup картинки
+const popupImage = page.querySelector('.popup_type_image');
+const popupPhoto = page.querySelector('.popup__photo');
+const popupCaption = page.querySelector('.popup__caption');
+
 // Блок places
 const places = page.querySelector('.places');
 
@@ -46,7 +51,7 @@ profileValid.enableValidation();
 addPlaceValid.enableValidation();
 
 // Открываем Popup
-export function openModalWindow(modalWindow) {
+function openModalWindow(modalWindow) {
   modalWindow.classList.add('popup_opened');
   page.addEventListener('keydown', closePopupByEsc);
   modalWindow.addEventListener('mousedown', closePopup);
@@ -60,45 +65,32 @@ function closeModalWindow(modalWindow) {
 }
 
 // Сброс формы
-function formReset(modalWindow) {
-  const formElement = modalWindow.querySelector(validationConfig.formSelector);
+function formReset(formElement) {
   formElement.reset();
-}
-
-// Очищаем ошибки инпутов после закрытия формы
-function cleanInputError(formElement) {
-  const inputList = formElement.querySelectorAll(validationConfig.inputSelector);
-  inputList.forEach(inputElement => {
-    const errorElement = document.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(validationConfig.inputErrorClass);
-    errorElement.classList.remove(validationConfig.errorClass);
-    errorElement.textContent = '';
-  });
 }
 
 // Открываем форму редактирования профайла
 function openEditProfilePopup() {
-  formReset(popupEditProfile);
-  profileValid._toggleButtonState();
+  formReset(formProfile);
+  profileValid.resetValidation();
   changeFormAttributeValue();
   changeProfileValue();
-  cleanInputError(formProfile);
   openModalWindow(popupEditProfile);
 }
 
 // Открываем форму добавления новой карточки
 function openAddPlacePopup() {
-  setButtonDisabled(popupAddPlace);
-  formReset(popupAddPlace);
-  cleanInputError(formPlace);
+  formReset(formPlace);
+  addPlaceValid.resetValidation();
   openModalWindow(popupAddPlace);
 }
 
-// Октлючаем кнопку сохранения при открытии
-function setButtonDisabled(modalWindow) {
-  const buttonElement = modalWindow.querySelector(`.popup__save-btn`);
-  buttonElement.disabled = true;
-  buttonElement.classList.add(validationConfig.inactiveButtonClass);
+// Открываем попап с картинкой
+function handleCardClick(name, link) {
+  popupPhoto.alt = name;
+  popupPhoto.src = link;
+  popupCaption.textContent = name;
+  openModalWindow(popupImage);
 }
 
 // Меняем значения атрибутов в форме Профайл
@@ -114,17 +106,23 @@ function changeProfileValue() {
   changeFormAttributeValue();
 }
 
-// Создаем объект карточки и вставляем на страницу
+// Создаем объект карточки
+function createCard(element) {
+  const card = new Card(element, '.places__template', handleCardClick);
+  const cardElement = card.createCardElement();
+  return cardElement;
+}
+
+//вставляем карточку на страницу
 function renderCard(element, container) {
-  const card = new Card(element, '.places__template');
-  const cardElement = card.createCard();
+  const cardElement = createCard(element);
   container.prepend(cardElement);
-  formReset(popupAddPlace);
+  formReset(formPlace);
 }
 
 // Вставляем карточки из массива
 initialCards.forEach((card) => {
-  renderCard(card, places);
+  places.append(createCard(card));
 });
 
 // Закрываем любую форму
@@ -145,13 +143,13 @@ function closePopupByEsc(evt) {
 }
 
 // функция изменения данных профайла
-function formEditProfile() {
+function handleProfileFormSubmit() {
   changeProfileValue();
   closeModalWindow(popupEditProfile);
 }
 
 // функция добавления новой карточки
-function formAddNewPlace() {
+function handlePlaceFormSubmit() {
   const card = {
     name: placeNameInput.value,
     link: placeUrlInput.value,
@@ -163,7 +161,7 @@ function formAddNewPlace() {
 // Навешиваем события
 editButton.addEventListener('click', openEditProfilePopup);
 addButton.addEventListener('click', openAddPlacePopup);
-formProfile.addEventListener('submit', formEditProfile);
-formPlace.addEventListener('submit', formAddNewPlace);
+formProfile.addEventListener('submit', handleProfileFormSubmit);
+formPlace.addEventListener('submit', handlePlaceFormSubmit);
 
 
