@@ -10,6 +10,7 @@ export class FormValidator {
   // Функция включает валидацию форм
   enableValidation() {
     this._formElement = this._validationForm;
+    this._buttonElement = document.querySelector(`.${this._formElement.id}-btn`);
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._setEventListeners();
     this._toggleButtonState();
@@ -17,14 +18,14 @@ export class FormValidator {
 
   // Функция навешивает слушатели на инпуты
   _setEventListeners() {
-    this._formElement.addEventListener('submit',  (evt) => {
+    this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    this._formElement.addEventListener('input',  () => {
+    this._formElement.addEventListener('input', () => {
       this._toggleButtonState();
     });
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input',  () => {
+      inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
       });
     });
@@ -32,34 +33,42 @@ export class FormValidator {
 
   // Функция валидации инпутов
   _checkInputValidity(inputElement) {
-    const errorElement = document.querySelector(`.${inputElement.id}-error`);
+    this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     if (!inputElement.validity.valid) {
-      this._showInputError(inputElement, errorElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(inputElement, errorElement);
+      this._hideInputError(inputElement);
     }
   };
 
   // Функция отображения ошибки
-  _showInputError(inputElement, errorElement, errorMessage) {
+  _showInputError(inputElement, errorMessage) {
     inputElement.classList.add(this._inputErrorClass);
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._errorClass);
+    this._errorElement.textContent = errorMessage;
+    this._errorElement.classList.add(this._errorClass);
   };
 
   // Функция убирает отображение ошибки
-  _hideInputError(inputElement, errorElement) {
+  _hideInputError(inputElement) {
     inputElement.classList.remove(this._inputErrorClass);
-    errorElement.classList.remove(this._errorClass);
-    errorElement.textContent = '';
+    this._errorElement.classList.remove(this._errorClass);
+    this._errorElement.textContent = '';
   };
+
+  // Функция активации кнопки формы и сброса ошибок
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+      this._hideInputError(inputElement);
+    });
+  }
 
   // Функция изменения состояния кнопки submit
   _toggleButtonState() {
-    const buttonElement = document.querySelector(`.${this._formElement.id}-btn`);
     const isFormValid = this._formElement.checkValidity();
-    buttonElement.disabled = !isFormValid;
-    buttonElement.classList.toggle(this._inactiveButtonClass, !isFormValid);
+    this._buttonElement.disabled = !isFormValid;
+    this._buttonElement.classList.toggle(this._inactiveButtonClass, !isFormValid);
   }
 }
 
