@@ -31,9 +31,14 @@ export class FormValidator {
     });
   };
 
+   // Функция получения поля ошибки
+   _getErrorelement(inputElement) {
+    this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+  }
+
   // Функция валидации инпутов
   _checkInputValidity(inputElement) {
-    this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    this._getErrorelement(inputElement);
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
@@ -59,7 +64,7 @@ export class FormValidator {
   resetValidation() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
-      this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+      this._getErrorelement(inputElement);
       this._hideInputError(inputElement);
     });
   }
