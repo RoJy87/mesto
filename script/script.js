@@ -1,6 +1,9 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { initialCards } from "./initialCards.js";
+import { Section } from "./Section.js";
+import { Popup, PopupWithImage, PopupWithForm } from "./Popup.js";
+import { UserInfo } from "./UserInfo.js";
 
 const validationConfig = {
   formSelector: '.form',
@@ -12,7 +15,7 @@ const validationConfig = {
 };
 
 const page = document.querySelector('.page');
-const ESC_BUTTON = 27;
+/* const ESC_BUTTON = 27; */
 
 // Профайл
 
@@ -25,8 +28,8 @@ const profileDescription = profile.querySelector('.profile__description');
 // Popup Редактировать профиль
 const popupEditProfile = page.querySelector('.popup_type_edit-profile');
 const formProfile = popupEditProfile.querySelector('.popup__form-data');
-const nameInput = popupEditProfile.querySelector('.popup__input_value_name');
-const jobInput = popupEditProfile.querySelector('.popup__input_value_status');
+/* const nameInput = popupEditProfile.querySelector('.popup__input_value_name');
+const jobInput = popupEditProfile.querySelector('.popup__input_value_status'); */
 
 // Popup Добавить новое место
 const popupAddPlace = page.querySelector('.popup_type_add-place');
@@ -36,8 +39,8 @@ const placeUrlInput = popupAddPlace.querySelector('.popup__input_value_url');
 
 // Popup картинки
 const popupImage = page.querySelector('.popup_type_image');
-const popupPhoto = page.querySelector('.popup__photo');
-const popupCaption = page.querySelector('.popup__caption');
+/* const popupPhoto = page.querySelector('.popup__photo');
+const popupCaption = page.querySelector('.popup__caption'); */
 
 // Блок places
 const places = page.querySelector('.places');
@@ -50,61 +53,80 @@ const addPlaceValid = new FormValidator(validationConfig, formPlace);
 profileValid.enableValidation();
 addPlaceValid.enableValidation();
 
+
+/* const data = {initialCards, renderCard};
+console.log(data) */
+
+const userData = {
+  name: profileName,
+  description: profileDescription,
+}
+const newUser = new UserInfo(userData);
+
+const newSection = new Section({data: initialCards, renderer: () => {
+  // Тело функции renderer пока оставим пустым
+}}, createCard, places);
+/* console.log(newSection) */
+newSection.renderElements();
+
+const popupWindowImage = new PopupWithImage(popupImage);
+const popupWindowPlace = new PopupWithForm(popupAddPlace);
+const popupWindowProfile = new PopupWithForm(popupEditProfile);
+
+
 // Открываем Popup
-function openModalWindow(modalWindow) {
+/* function openModalWindow(modalWindow) {
   modalWindow.classList.add('popup_opened');
   page.addEventListener('keydown', closePopupByEsc);
   modalWindow.addEventListener('mousedown', closePopup);
-}
+} */
 
 // Закрываем Popup
-function closeModalWindow(modalWindow) {
+/* function closeModalWindow(modalWindow) {
   modalWindow.classList.remove('popup_opened');
   page.removeEventListener('keydown', closePopupByEsc);
   modalWindow.removeEventListener('mousedown', closePopup);
-}
+} */
 
 // Сброс формы
-function formReset(formElement) {
+/* function formReset(formElement) {
   formElement.reset();
-}
+} */
 
 // Открываем форму редактирования профайла
 function openEditProfilePopup() {
-  formReset(formProfile);
+  /* formReset(formProfile); */
   profileValid.resetValidation();
-  changeFormAttributeValue();
-  changeProfileValue();
-  openModalWindow(popupEditProfile);
+  newUser.getUserInfo();
+  newUser.setUserInfo();
+  /* openModalWindow(popupEditProfile); */
+  popupWindowProfile.open();
 }
 
 // Открываем форму добавления новой карточки
 function openAddPlacePopup() {
-  formReset(formPlace);
+  /* formReset(formPlace); */
   addPlaceValid.resetValidation();
-  openModalWindow(popupAddPlace);
+  popupWindowPlace.open();
+  /* openModalWindow(popupAddPlace); */
 }
 
 // Открываем попап с картинкой
 function handleCardClick(name, link) {
-  popupPhoto.alt = name;
-  popupPhoto.src = link;
-  popupCaption.textContent = name;
-  openModalWindow(popupImage);
+  popupWindowImage.open(name, link);
 }
 
 // Меняем значения атрибутов в форме Профайл
-function changeFormAttributeValue() {
+/* function changeFormAttributeValue() {
   nameInput.setAttribute('value', profileName.textContent);
   jobInput.setAttribute('value', profileDescription.textContent);
-}
+} */
 
 // Редактируем данные в Профайле
-function changeProfileValue() {
+/* function changeProfileValue() {
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
-  changeFormAttributeValue();
-}
+} */
 
 // Создаем объект карточки
 function createCard(element) {
@@ -117,35 +139,36 @@ function createCard(element) {
 function renderCard(element, container) {
   const cardElement = createCard(element);
   container.prepend(cardElement);
-  formReset(formPlace);
+  /* formReset(formPlace); */
+  /* return cardElement; */
 }
 
 // Вставляем карточки из массива
-initialCards.forEach((card) => {
+/* initialCards.forEach((card) => {
   places.append(createCard(card));
-});
+}); */
 
 // Закрываем любую форму
-function closePopup(evt) {
+/* function closePopup(evt) {
   const targets = evt.target.classList;
   if (targets.contains('popup__close-btn')
     || targets.contains('popup')) {
-    closeModalWindow(evt.currentTarget);
+      popupWindowImage(evt.currentTarget);
   }
-}
+} */
 
 // Закрываем форму по кнопке ESC
-function closePopupByEsc(evt) {
+/* function closePopupByEsc(evt) {
   if (evt.keyCode === ESC_BUTTON) {
     const popupActive = page.querySelector('.popup_opened');
     closeModalWindow(popupActive)
   }
-}
+} */
 
 // функция изменения данных профайла
 function handleProfileFormSubmit() {
-  changeProfileValue();
-  closeModalWindow(popupEditProfile);
+  newUser.setUserInfo();
+  popupWindowProfile.close();
 }
 
 // функция добавления новой карточки
@@ -154,8 +177,9 @@ function handlePlaceFormSubmit() {
     name: placeNameInput.value,
     link: placeUrlInput.value,
   }
-  renderCard(card, places);
-  closeModalWindow(popupAddPlace);
+  newSection.addItem(card);
+  popupWindowPlace.close();
+  /* closeModalWindow(popupAddPlace); */
 }
 
 // Навешиваем события
