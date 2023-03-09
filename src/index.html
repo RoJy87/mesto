@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title lang="en">Mesto</title>
 </head>
 
@@ -14,7 +13,7 @@
   <!-- Блок header -->
 
   <header class="header">
-    <img src="./image/logo.svg" alt="Логотип Место" class="header__logo">
+    <img src="<%=require('./image/logo.svg')%>" alt="Логотип Место" class="header__logo">
   </header>
 
   <!-- Блок main // profile -->
@@ -22,7 +21,7 @@
   <main class="main">
 
     <section class="profile">
-      <img src="./image/avatar__image.jpg" alt="Аватар пользователя" class="profile__avatar">
+      <img src="<%=require('./image/avatar__image.jpg')%>" alt="Аватар пользователя" class="profile__avatar">
       <div class="profile__info">
         <div class="profile__wrapper">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -113,10 +112,9 @@
         </div>
       </article>
       <button aria-label="Удалить карточку" type="button" class="place__delete-btn button"></button>
-    </li> -->
+    </li>
   </template>
 
-  <script type="module" src="./script/script.js" defer></script>
 </body>
 
 </html>
