@@ -5,12 +5,6 @@ export class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-  createCard(element) {
-    const card = new Card(element, '.places__template', handleCardClick);
-    const cardElement = card.createCardElement();
-    return cardElement;
-  }
-
   renderElements() {
     this._cards.forEach((card) => {
       this._renderer(card);

@@ -1,7 +1,7 @@
 import './index.css';
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { initialCards } from "../components/initialCards.js";
+import { initialCards } from "../utils/initialCards.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
@@ -10,14 +10,11 @@ import {
   validationConfig,
   editButton,
   addButton,
-  userData,
-  popupProfileSelector,
   formProfile,
-  popupPlaceSelector,
+  nameInput,
+  jobInput,
   formPlace,
-  placeInputList,
-  popupImageSelector,
-} from "../components/constants.js"
+} from "../utils/constants.js"
 
 
 // объекты класса Валидации
@@ -29,32 +26,29 @@ profileValidator.enableValidation();
 addPlaceValidator.enableValidation();
 
 // объекты класса Данные пользователя
-const defaultUser = new UserInfo(userData);
+const userInfo = new UserInfo({
+  nameSelector: '.profile__name',
+  descriptionSelector: '.profile__description'
+});
 
 // объекты класса блока для вставки карточек
 const cardSection = new Section(
   {
     data: initialCards,
     renderer: (element) => {
-      const cardElement = createCard(element);
-      cardSection.addItem(cardElement);
+      cardSection.addItem(createCard(element));
     }
   }, '.places');
 cardSection.renderElements();
 
 // объекты класса Popup
-const popupImage = new PopupWithImage(popupImageSelector);
+const popupImage = new PopupWithImage('.popup_type_image');
 
 const popupPlace = new PopupWithForm(
   {
-    popupSelector: popupPlaceSelector,
-    formSubmit: () => {
-      const item = {
-        name: placeInputList.name.value,
-        link: placeInputList.link.value,
-      }
-      const cardElement = createCard(item);
-      cardSection.addItem(cardElement);
+    popupSelector: '.popup_type_add-place',
+    submitHandler: (element) => {
+      cardSection.addItem(createCard(element));
       popupPlace.close();
     }
   }
@@ -63,9 +57,9 @@ const popupPlace = new PopupWithForm(
 const popupProfile = new PopupWithForm
   (
     {
-      popupSelector: popupProfileSelector,
-      formSubmit: () => {
-        defaultUser.setUserInfo();
+      popupSelector: '.popup_type_edit-profile',
+      submitHandler: (element) => {
+        userInfo.setUserInfo(element);
         popupProfile.close();
       }
     }
@@ -74,23 +68,21 @@ const popupProfile = new PopupWithForm
 // Открываем форму редактирования профайла
 function handleEditProfileClick() {
   profileValidator.resetValidation();
-  defaultUser.getUserInfo();
-  defaultUser.setUserInfo();
+  const infoObject = userInfo.getUserInfo();
+  nameInput.value = infoObject.name;
+  jobInput.value = infoObject.description;
   popupProfile.open();
-  popupProfile.setEventListeners();
 }
 
 // Открываем форму добавления новой карточки
 function handleAddPlaceClick() {
   addPlaceValidator.resetValidation();
   popupPlace.open();
-  popupPlace.setEventListeners();
 }
 
 // Открываем попап с картинкой
 function handleCardClick(name, link) {
   popupImage.open(name, link);
-  popupImage.setEventListeners();
 }
 
 // Создаем объект карточки
