@@ -26,6 +26,7 @@
 /* блок main // profile */
 
 @import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/__avatar-btn/profile__avatar-btn.css");
 @import url("../blocks/profile/__avatar/profile__avatar.css");
 @import url("../blocks/profile/__info/profile__info.css");
 @import url("../blocks/profile/__wrapper/profile__wrapper.css");
