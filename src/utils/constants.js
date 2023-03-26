@@ -26,7 +26,7 @@ export const formPlace = page.querySelector('.popup__form-place');
 export const formAvatar = page.querySelector('.popup__form-avatar');
 
 // Popup spinner
-export const spinnerPopup = page.querySelector('.popup__spinner');
+export const spinnerPopup = page.querySelector('.popup_type_spinner');
 
 export const urlRequest = {
   baseUrl: 'https://nomoreparties.co/v1/cohort-62/',

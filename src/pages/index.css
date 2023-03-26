@@ -58,9 +58,9 @@
 /* блок popup */
 
 @import url("../blocks/popup/popup.css");
-@import url("../blocks/popup/__spinner/popup__spinner.css");
-@import url("../blocks/popup/__spinner/_opened/popup__spinner_opened.css");
-@import url("../blocks/popup/__spinner-container/popup__spinner.css");
+@import url("../blocks/popup/_type/popup_type_spinner.css");
+@import url("../blocks/popup/_opened-spinner/popup_opened-spinner.css");
+@import url("../blocks/popup/__spinner-container/popup__spinner-container.css");
 @import url("../blocks/popup/__spiner-pic/popup__spiner-pic.css");
 @import url("../blocks/popup/_opened/popup_opened.css");
 @import url("../blocks/popup/__container/popup__container.css");

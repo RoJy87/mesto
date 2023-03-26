@@ -39,9 +39,9 @@ const api = new Api({
 
 function spinner(isWait) {
   if (isWait) {
-    spinnerPopup.classList.add('popup__spinner_opened');
+    spinnerPopup.classList.add('popup_opened-spinner');
   } else {
-    spinnerPopup.classList.remove('popup__spinner_opened');
+    spinnerPopup.classList.remove('popup_opened-spinner');
   }
 }
 
