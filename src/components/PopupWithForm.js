@@ -39,7 +39,7 @@ export class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._formReset();
+    setTimeout(() => this._formReset(), 1000);
   }
 
   _formReset() {

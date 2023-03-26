@@ -93,13 +93,4 @@ export class Api {
     })
       .then(this._thenFunc)
   }
-
-  // проверить лайки карточки (GET)
-  checkLike() {
-    return fetch(`${this._url.cardsUrl}`, {
-      headers: this._headers,
-    })
-      .then(this._thenFunc)
-  }
-
 }

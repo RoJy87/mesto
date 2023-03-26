@@ -1,10 +1,9 @@
 export class Card {
-  constructor({ data, handleCardClick, handleLikeClick, handleDeleteCardClick, templateSelector, myId }) {
+  constructor({data, handleCardClick, handleLikeClick, handleDeleteCardClick, templateSelector, myId }) {
     this._data = data;
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes
-    this._likesCounter = data.likes.length;
+    this._likes = data.likes;
     this._cardId = data._id;
     this._ownerId = data.owner._id;
     this._templateSelector = templateSelector;
@@ -12,7 +11,6 @@ export class Card {
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteCardClick = handleDeleteCardClick;
     this._myId = myId;
-    this._isLiked = false;
   }
 
   _getTemplate() {
@@ -28,23 +26,25 @@ export class Card {
   isLikedChecker = (card) => {
     const likeId = card.likes.map(item => (item._id))
     if (likeId.includes(this._myId)) {
-      // debugger
-      this._likeButton.classList.add('place__like-btn_active');
       return this._isLiked = true;
     } else {
-      this._likeButton.classList.remove('place__like-btn_active');
       return this._isLiked = false;
     }
   }
 
   likeRender = (card) => {
+    this.isLikedChecker(card)
+    if (this._isLiked) {
+      this._likeButton.classList.add('place__like-btn_active');
+    } else {
+      this._likeButton.classList.remove('place__like-btn_active');
+    }
     this._likesCount.textContent = card.likes.length;
   }
 
   // Навешиваем события
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
-      // debugger
       this._handleLikeClick();
     });
 
@@ -74,8 +74,8 @@ export class Card {
     this._placePhoto.src = this._link;
     this._placeName.alt = this._name;
     this._placeName.textContent = this._name;
+
     this.likeRender(this._data)
-    this.isLikedChecker(this._data);
 
     this._setEventListeners();
 

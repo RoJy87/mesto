@@ -25,6 +25,9 @@ export const formPlace = page.querySelector('.popup__form-place');
 // Popup аватар
 export const formAvatar = page.querySelector('.popup__form-avatar');
 
+// Popup spinner
+export const spinnerPopup = page.querySelector('.popup__spinner');
+
 export const urlRequest = {
   baseUrl: 'https://nomoreparties.co/v1/cohort-62/',
   mestoUrl: 'https://mesto.nomoreparties.co/v1/cohort-62/',
