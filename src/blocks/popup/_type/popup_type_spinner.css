@@ -1,4 +1,6 @@
-.popup__spinner_opened {
-  visibility: visible;
-  opacity: 1;
+.popup_type_spinner {
+  flex-direction: column;
+  transform: none;
+  transition: none;
+  background: rgba(0, 0, 0, 1);
 }

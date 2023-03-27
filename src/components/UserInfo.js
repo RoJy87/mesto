@@ -6,13 +6,20 @@ export class UserInfo {
     this.id = {};
   }
 
-  getUserInfo = (data) => {
+  getUserInfo() {
+    return {
+      name: this._profileName.textContent,
+      about: this._profileDescription.textContent,
+    }
+  }
+
+  setUserAvatar(data) {
+    this._profileAvatar.src = data.avatar;
+  }
+
+  setUserInfo(data) {
     this._profileName.textContent = data.name;
     this._profileDescription.textContent = data.about;
     this.id = data._id;
-  }
-
-  getUserAvatar = (data) => {
-    this._profileAvatar.src = data.avatar;
   }
 }

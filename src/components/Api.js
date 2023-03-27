@@ -5,7 +5,7 @@ export class Api {
     this._headers = headers;
   }
 
-  _thenFunc = (res) => {
+  _checkResponse = (res) => {
     if (res.ok) {
       return res.json()
     }
@@ -17,7 +17,7 @@ export class Api {
     return fetch(`${this._url.userUrl}`, {
       headers: this._headers,
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 
   // заменить данные пользователя (PATCH)
@@ -30,7 +30,7 @@ export class Api {
         about: body.about,
       })
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 
   // заменить аватар (PATCH)
@@ -42,7 +42,7 @@ export class Api {
         avatar: body.avatar,
       })
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 
   // получить список всех карточек в виде массива (GET)
@@ -50,7 +50,7 @@ export class Api {
     return fetch(`${this._url.cardsUrl}`, {
       headers: this._headers
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 
   // добавить карточку (POST)
@@ -64,7 +64,7 @@ export class Api {
       }),
       headers: this._headers,
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 
   // удалить карточку (DELETE)
@@ -73,7 +73,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 
   // “залайкать” карточку (PUT)
@@ -82,7 +82,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers,
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 
   // удалить лайк карточки (DELETE)
@@ -91,6 +91,6 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then(this._thenFunc)
+      .then(this._checkResponse)
   }
 }

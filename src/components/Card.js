@@ -1,6 +1,6 @@
 export class Card {
   constructor({data, handleCardClick, handleLikeClick, handleDeleteCardClick, templateSelector, myId }) {
-    this._data = data;
+    this._card = data;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -42,6 +42,14 @@ export class Card {
     this._likesCount.textContent = card.likes.length;
   }
 
+  findCard(data) {
+    return data.find(item => item._id === this.getId())
+  }
+
+  getId() {
+    return this._cardId;
+  };
+
   // Навешиваем события
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
@@ -75,7 +83,7 @@ export class Card {
     this._placeName.alt = this._name;
     this._placeName.textContent = this._name;
 
-    this.likeRender(this._data)
+    this.likeRender(this._card)
 
     this._setEventListeners();
 

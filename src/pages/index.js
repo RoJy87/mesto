@@ -16,8 +16,6 @@ import {
   formProfile,
   formPlace,
   formAvatar,
-  nameInput,
-  jobInput,
   urlRequest,
   token,
 } from "../utils/constants.js"
@@ -60,72 +58,38 @@ Promise.all([api.pullUserInfo(), api.getItems()])
     // объекты класса блока для вставки карточек
     const cardSection = new Section(
       {
-        renderer: (element) => {
-          cardSection.addItem(createCard(element));
-        }
-        ,
+        renderer: (element) => { cardSection.addItem(createCard(element)) },
         containerSelector: '.places',
       }
     );
 
-    userInfo.getUserInfo(res1);
-    userInfo.getUserAvatar(res1)
+    userInfo.setUserInfo(res1);
+    userInfo.setUserAvatar(res1)
     cardSection.renderElements(res2);
 
     // Создаем объект карточки
     function createCard(element) {
       const card = new Card({
         data: element,
-        handleCardClick: (name, link) => {
-          popupImage.open(name, link);
-        },
+        handleCardClick: (name, link) => { popupImage.open(name, link) },
         handleLikeClick: () => {
           api.getItems()
-            .then((res) => {
-              return res.find(item => item._id === element._id);;
-            })
+            .then((res) => { return card.findCard(res) })
             .then((cardEl) => {
               const isLiked = card.isLikedChecker(cardEl);
-              if (isLiked == true) {
-                api.removeLike(card._cardId)
-                  .then(() => {
-                    api.getItems()
-                      .then((res) => {
-                        card.likeRender(res.find(item => item._id === element._id))
-                      })
-                  })
+              if (isLiked) {
+                return api.removeLike(card.getId())
               } else {
-                api.addLike(card._cardId)
-                  .then(() => {
-                    api.getItems()
-                      .then((res) => {
-                        card.likeRender(res.find(item => item._id === element._id))
-                      })
-                  })
+                return api.addLike(card.getId())
               }
+            })
+            .then(() => {
+              api.getItems()
+                .then((res) => { card.likeRender(card.findCard(res)) })
             })
             .catch((err) => console.log(err));
         },
-        handleDeleteCardClick: (element) => {
-          const popupConfirm = new PopupWithSubmit
-            (
-              {
-                popupSelector: '.popup_type_delete-place',
-                submitHandler: (evt) => {
-                  evt.preventDefault();
-                  api.deleteCard(element.id)
-                    .then(() => {
-                      element.remove();
-                    })
-                    .then(() => {
-                      popupConfirm.close();
-                    })
-                    .catch(err => console.log(err))
-                },
-              }
-            );
-          popupConfirm.open();
-        },
+        handleDeleteCardClick: (element) => { popupConfirm.open(element) },
         templateSelector: '.places__template',
         myId: userInfo.id,
       });
@@ -142,13 +106,9 @@ Promise.all([api.pullUserInfo(), api.getItems()])
         submitHandler: (element) => {
           popupPlace.renderLoading(true);
           api.pushCard(element)
-            .then((res) => {
-              cardSection.addItem(createCard(res));
-            })
-            .then(() => popupPlace.close())
-            .catch((err) => {
-              console.log(err)
-            })
+            .then((res) => { cardSection.addItem(createCard(res)) })
+            .then(() => { popupPlace.close() })
+            .catch((err) => { console.log(err) })
             .finally(() => { popupPlace.renderLoading(false) })
 
         }
@@ -162,13 +122,9 @@ Promise.all([api.pullUserInfo(), api.getItems()])
           submitHandler: (element) => {
             popupProfile.renderLoading(true);
             api.pushUserInfo(element)
-              .then((res) => {
-                userInfo.getUserInfo(res);
-              })
-              .then(() => popupProfile.close())
-              .catch((err) => {
-                console.log(err)
-              })
+              .then((res) => { userInfo.setUserInfo(res) })
+              .then(() => { popupProfile.close() })
+              .catch((err) => { console.log(err) })
               .finally(() => { popupProfile.renderLoading(false) })
           }
         }
@@ -182,15 +138,24 @@ Promise.all([api.pullUserInfo(), api.getItems()])
             popupAvatar.__proto__ = popupProfile;
             popupAvatar.renderLoading(true);
             api.changeAvatar(element)
-              .then((res) => {
-                userInfo.getUserAvatar(res);
-              })
-              .then(() => popupAvatar.close())
-              .catch((err) => {
-                console.log(err)
-              })
+              .then((res) => { userInfo.setUserAvatar(res) })
+              .then(() => { popupAvatar.close() })
+              .catch((err) => { console.log(err) })
               .finally(() => { popupAvatar.renderLoading(false) })
           }
+        }
+      );
+
+    const popupConfirm = new PopupWithSubmit
+      (
+        {
+          popupSelector: '.popup_type_delete-place',
+          submitHandler: (element) => {
+            api.deleteCard(element.id)
+              .then(() => { element.remove() })
+              .then(() => { popupConfirm.close() })
+              .catch(err => console.log(err))
+          },
         }
       );
 
@@ -199,22 +164,16 @@ Promise.all([api.pullUserInfo(), api.getItems()])
     addPlaceValidator.enableValidation();
     avatarValidator.enableValidation();
 
-    return [popupPlace, popupProfile, popupAvatar]
+    return [userInfo, popupPlace, popupProfile, popupAvatar]
   })
-  .then(([popupPlace, popupProfile, popupAvatar]) => {
+  .then(([userInfo, popupPlace, popupProfile, popupAvatar]) => {
 
     // Открываем форму редактирования профайла
     function handleEditProfileClick() {
       profileValidator.resetValidation();
-      api.pullUserInfo()
-        .then((res) => {
-          nameInput.value = res.name;
-          jobInput.value = res.about;
-        })
-        .then(() => popupProfile.open())
-        .catch((err) => {
-          console.log(err)
-        });
+      const infoObject = userInfo.getUserInfo();
+      popupProfile.setInputValues(infoObject);
+      popupProfile.open();
     }
 
     // Открываем форму редактирования аватара
@@ -234,9 +193,7 @@ Promise.all([api.pullUserInfo(), api.getItems()])
     addButton.addEventListener('click', handleAddPlaceClick);
     avatarButton.addEventListener('click', handleEditAvatarClick);
   })
-  .catch(error => {
-    console.error(error)
-  })
+  .catch(error => { console.error(error) })
   .finally(() => { spinner(false) })
 
 
