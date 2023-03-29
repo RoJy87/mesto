@@ -65,7 +65,7 @@ Promise.all([api.pullUserInfo(), api.getItems()])
 
     userInfo.setUserInfo(res1);
     userInfo.setUserAvatar(res1)
-    cardSection.renderElements(res2);
+    cardSection.renderElements(res2.reverse());
 
     // Создаем объект карточки
     function createCard(element) {
