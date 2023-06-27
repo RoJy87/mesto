@@ -8,7 +8,6 @@ import { PopupWithSubmit } from "../components/PopupWithSubmit";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from '../components/Api';
 import {
-  spinnerPopup,
   validationConfig,
   editButton,
   addButton,
@@ -19,6 +18,7 @@ import {
   urlRequest,
   token,
 } from "../utils/constants.js"
+import { spinner } from './spinner';
 
 
 // объекты класса Валидации
@@ -34,14 +34,6 @@ const api = new Api({
     'Content-Type': 'application/json',
   }
 });
-
-function spinner(isWait) {
-  if (isWait) {
-    spinnerPopup.classList.add('popup_opened-spinner');
-  } else {
-    spinnerPopup.classList.remove('popup_opened-spinner');
-  }
-}
 
 spinner(true);
 
